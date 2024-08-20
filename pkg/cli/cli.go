@@ -48,4 +48,20 @@ func handleChoice(choice int) {
 	}
 }
 
-// Define analyzeStockAndSentiment, viewReport, and exportData functions here.
+func analyzeStockAndSentiment() {
+	fmt.Println("Analyzing stock and sentiment...")
+	// In the future, this function will fetch stock data and perform sentiment analysis.
+	showMainMenu()
+}
+
+func viewReport() {
+	fmt.Println("Viewing report...")
+	// In the future, this function will display a detailed report of stock sentiment analysis.
+	showMainMenu()
+}
+
+func exportData() {
+	fmt.Println("Exporting data...")
+	// In the future, this function will allow users to export data in various formats.
+	showMainMenu()
+}
