@@ -1,7 +1,3 @@
-Certainly! Here’s a README document with instructions for setting up the necessary services, installing dependencies, running the app, and a summary of the Stock Sentiment Analysis app.
-
----
-
 # Stock Sentiment Analysis CLI
 
 ## Summary
