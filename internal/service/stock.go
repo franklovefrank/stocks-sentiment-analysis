@@ -4,13 +4,14 @@ import (
 	"fmt"
 	"stock-sentiment-cli/internal/facade"
 	"stock-sentiment-cli/internal/model"
+	"stock-sentiment-cli/internal/util"
 )
 
 type StockService struct {
-	apiFacade *facade.APIFacadeImpl
+	apiFacade facade.APIFacade
 }
 
-func NewStockService(apiFacade *facade.APIFacadeImpl) *StockService {
+func NewStockService(apiFacade facade.APIFacade) *StockService {
 	return &StockService{apiFacade: apiFacade}
 }
 
@@ -30,7 +31,7 @@ func (s *StockService) CalculateReturnsAndDrawdown(query model.StockQuery) (floa
 	maxDrawdown := calculateDrawdown(prices)
 
 	simpleReturn := calculateSimpleReturn(startPrice, endPrice)
-	return simpleReturn, maxDrawdown, nil
+	return util.RoundToTwoDecimalPlaces(simpleReturn), util.RoundToTwoDecimalPlaces(maxDrawdown), nil
 }
 
 func extractPrices(stockHistory *model.StockHistory) []float64 {

@@ -16,7 +16,7 @@ func NewSentimentService(apiFacade facade.APIFacade) *SentimentService {
 	return &SentimentService{apiFacade: apiFacade}
 }
 
-// AnalyzePosts fetches posts and analyzes sentiment.
+// fetches posts and analyzes sentiment.
 func (s *SentimentService) AnalyzePosts(symbol, startDate, endDate string) (int, int, int, error) {
 	postsResponse, err := s.apiFacade.FetchPosts(symbol, "your-token", startDate, endDate)
 	if err != nil {

@@ -1,6 +1,7 @@
 package util
 
 import (
+	"math"
 	"time"
 )
 
@@ -21,4 +22,8 @@ func ToISO8601(dateStr string) (string, error) {
 		return "", err
 	}
 	return parsedDate.Format("2006-01-02T15:04:05Z07:00"), nil
+}
+
+func RoundToTwoDecimalPlaces(value float64) float64 {
+	return math.Round(value*100) / 100
 }

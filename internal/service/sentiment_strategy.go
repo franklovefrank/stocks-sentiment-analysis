@@ -1,7 +1,7 @@
 package service
 
 /*
-didn't have time to implement the details of each strategy but wanted to do something like this with the sentiment service
+didn't have time to implement the details of each strategy but wanted to do something like this for the sentiment service
 
 type SentimentStrategy interface {
 	Analyze(tweets []Tweet) (AnalysisResult, error)
