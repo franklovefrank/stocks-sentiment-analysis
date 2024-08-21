@@ -14,8 +14,8 @@ func NewStockService(apiFacade *facade.APIFacadeImpl) *StockService {
 	return &StockService{apiFacade: apiFacade}
 }
 
-func (s *StockService) CalculateReturnsAndDrawdown(symbol, startDate, endDate string) (float64, float64, error) {
-	stockHistory, err := s.apiFacade.FetchStockData(symbol, startDate, endDate)
+func (s *StockService) CalculateReturnsAndDrawdown(query model.StockQuery) (float64, float64, error) {
+	stockHistory, err := s.apiFacade.FetchStockData(query.Symbol, query.StartDate, query.EndDate)
 	if err != nil {
 		return 0, 0, err
 	}

@@ -1,35 +1,61 @@
 package service
 
-/*
-didn't have time to implement the details of each strategy but this is approximately the design pattern I had in mind
+import (
+	"fmt"
+	"strings"
+	"sync"
+
+	"stock-sentiment-cli/internal/facade"
+)
 
 type SentimentService struct {
-	nlpClient *api.GoogleNLPClient
+	apiFacade facade.APIFacade
 }
 
-func NewSentimentService(nlpClient *api.GoogleNLPClient) *SentimentService {
-	return &SentimentService{nlpClient: nlpClient}
-}
-type SentimentStrategy interface {
-	Analyze(tweet string) (AnalysisResult, error)
+func NewSentimentService(apiFacade facade.APIFacade) *SentimentService {
+	return &SentimentService{apiFacade: apiFacade}
 }
 
-type BasicSentimentStrategy struct{}
+// AnalyzePosts fetches posts and analyzes sentiment.
+func (s *SentimentService) AnalyzePosts(symbol, startDate, endDate string) (int, int, int, error) {
+	postsResponse, err := s.apiFacade.FetchPosts(symbol, "your-token", startDate, endDate)
+	if err != nil {
+		return 0, 0, 0, err
+	}
 
-func (b *BasicSentimentStrategy) Analyze(tweets []Tweet) (AnalysisResult, error) {
+	var wg sync.WaitGroup
+	var mu sync.Mutex
+	var positive, neutral, negative int
+
+	for _, post := range postsResponse.Posts {
+		postText := post.Record.Text
+		if strings.TrimSpace(postText) == "" {
+			continue
+		}
+
+		wg.Add(1)
+		go func(text string) {
+			defer wg.Done()
+			result, err := s.apiFacade.AnalyzeSentiment(text)
+			if err != nil {
+				fmt.Printf("Error analyzing sentiment: %v\n", err)
+				return
+			}
+
+			mu.Lock()
+			defer mu.Unlock()
+
+			if result.Score > 0 {
+				positive++
+			} else if result.Score == 0 {
+				neutral++
+			} else {
+				negative++
+			}
+		}(postText)
+	}
+
+	wg.Wait()
+
+	return positive, neutral, negative, nil
 }
-
-type AdvancedSentimentStrategy struct{}
-
-func (a *AdvancedSentimentStrategy) Analyze(tweets []Tweet) (AnalysisResult, error) {
-}
-
-type CustomSentimentStrategy struct {
-	// Config options for custom behavior
-	Config map[string]interface{}
-}
-
-func (c *CustomSentimentStrategy) Analyze(tweets []Tweet) (AnalysisResult, error) {
-}
-
-*/

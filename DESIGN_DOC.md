@@ -197,20 +197,22 @@ stock-sentiment-cli/
 │   ├── main.go
 ├── test/
 │   ├── api/
-│   │   ├── yahoo_finance_test.go
-│   │   ├── reddit_test.go
-│   │   ├── google_nlp_test.go
-│   ├── analysis/
-│   │   ├── sentiment_analyzer_test.go
-│   ├── cli/
-│   │   ├── cli_test.go
-│   ├── report/
-│   │   ├── report_generator_test.go
-│   ├── export/
-│   │   ├── export_test.go
+│   │   ├── bluesky_client_test.go
+│   │   ├── yahoo_finance_client_test.go
+│   │   ├── google_nlp_client_test.go
+│   ├── facade/
+│   │   ├── api_facade_test.go
+│   │   ├── api_facade_impl_test.go
+│   ├── model/
+│   │   ├── stock_history_test.go
+│   │   ├── bluesky_response_test.go
+│   │   ├── sentiment_result_test.go
+│   ├── service/
+│   │   ├── stock_service_test.go
+│   ├── cmd/
+│   │   ├── analyze_test.go
 ├── Dockerfile
 ├── go.mod
 ├── go.sum
 └── README.md
-
 ```
