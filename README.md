@@ -7,18 +7,12 @@ The Stock Sentiment Analysis app allows users to explore the relationship betwee
 
 ## Setup Instructions
 
-### 1. Setup Bluesky API
+### Setup Bluesky API
 
-1. **Create a Bluesky Developer Account:**
-   - Visit the [Bluesky developer portal](https://docs.bsky.app/docs/get-started) and sign up for an account.
+1. **Obtain Bluesky Access Token**
+   - Bluesky does not have a webpage to get API keys yet. To generate a token, you can follow the instructions [here](https://docs.bsky.app/docs/api/com-atproto-server-create-session)
 
-2. **Obtain API Credentials:**
-   - After signing up, navigate to the API section and generate an API token.
-
-3. **Configure API Token:**
-   - Store your API token securely. You'll need to provide it when running the app.
-
-### 2. Setup Google Cloud Natural Language API
+### Setup Google Cloud Natural Language API
 
 1. **Create a Google Cloud Account:**
    - Sign up for a Google Cloud account at [Google Cloud Console](https://console.cloud.google.com/).
@@ -32,14 +26,16 @@ The Stock Sentiment Analysis app allows users to explore the relationship betwee
 4. **Generate API Credentials:**
    - Go to the "Credentials" page, create a new API key or service account, and download the JSON key file. Securely store this key file.
 
-5. **Set Up Authentication:**
-   - Set the `GOOGLE_APPLICATION_CREDENTIALS` environment variable to the path of your JSON key file.
 
-   ```bash
-   export GOOGLE_APPLICATION_CREDENTIALS="/path/to/your/credentials-file.json"
-   ```
+### Environment Setup 
 
-### 3. Install Dependencies
+1. **Copy the `.env.example` file:**
+   - `cp .env.example .env`
+
+2. **Set environmental variables:**
+   - In the newly created `.env` file, add your Bluesky API token and the path of your JSON key file 
+
+### Install Dependencies
 
 1. **Clone the Repository:**
 
@@ -56,7 +52,7 @@ The Stock Sentiment Analysis app allows users to explore the relationship betwee
 
    This command will download and install the required Go dependencies.
 
-### 4. Run the App
+### Run the App
 
 1. **Build the Application:**
 

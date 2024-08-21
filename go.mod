@@ -4,6 +4,7 @@ go 1.23.0
 
 require (
 	cloud.google.com/go/language v1.14.0
+	github.com/joho/godotenv v1.5.1
 	github.com/spf13/cobra v1.8.1
 	github.com/stretchr/testify v1.9.0
 )

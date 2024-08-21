@@ -18,10 +18,10 @@ func NewSentimentService(apiFacade facade.APIFacade) *SentimentService {
 }
 
 // fetches posts and analyzes sentiment.
-func (s *SentimentService) AnalyzePosts(query model.StockQuery) (int, int, int, error) {
+func (s *SentimentService) AnalyzePosts(query model.StockQuery) (model.SentimentSummary, error) {
 	postsResponse, err := s.apiFacade.FetchPosts(query)
 	if err != nil {
-		return 0, 0, 0, err
+		return model.SentimentSummary{}, err
 	}
 
 	var wg sync.WaitGroup
@@ -58,5 +58,12 @@ func (s *SentimentService) AnalyzePosts(query model.StockQuery) (int, int, int, 
 
 	wg.Wait()
 
-	return positive, neutral, negative, nil
+	summary := model.SentimentSummary{
+		Positive: positive,
+		Neutral:  neutral,
+		Negative: negative,
+		Total:    positive + neutral + negative,
+	}
+
+	return summary, nil
 }
