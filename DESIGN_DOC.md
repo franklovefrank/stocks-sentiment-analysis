@@ -178,44 +178,39 @@ The Stock Sentiment Analysis app allows users to explore the relationship betwee
 ## Project Structure
 ```
 stock-sentiment-cli/
-│
-├── cmd/
-│   ├── main.go                          # Entry point of the application
-│
-├── pkg/
+├── internal/
 │   ├── api/
-│   │   ├── yahoo_finance.go             # Interaction with Yahoo Finance API
-│   │   ├── bluesky.go                   # Interaction with Bluesky API
-│   │   ├── google_nlp.go                # Interaction with Google Cloud Natural Language API
-│   ├── analysis/
-│   │   ├── sentiment_analyzer.go        # Sentiment analysis logic using Google Cloud NLP
-│   ├── cli/
-│   │   ├── cli.go                       # CLI interface and input handling
-│   ├── report/
-│   │   ├── report_generator.go          # Logic for generating and displaying reports
-│   ├── export/
-│   │   ├── export.go                    # Export functionalities (e.g., to CSV or JSON)
+│   │   ├── bluesky_client.go
+│   │   ├── yahoo_finance_client.go
+│   │   ├── google_nlp_client.go
+│   ├── facade/
+│   │   ├── api_facade.go
+│   │   ├── api_facade_impl.go
 │   ├── model/
-│   │   ├── tweet.go                    # Models for tweet data
-│   │   ├── stock_data.go                # Models for stock data
-│   │   ├── sentiment_result.go          # Definition of sentiment analysis results
-│
+│   │   ├── stock_history.go
+│   │   ├── bluesky_response.go
+│   │   ├── sentiment_result.go
+│   ├── service/
+│   │   ├── stock_service.go
+│   ├── cmd/
+│   │   ├── analyze.go
+│   ├── main.go
 ├── test/
 │   ├── api/
-│   │   ├── yahoo_finance_test.go        # Tests for Yahoo Finance API interactions
-│   │   ├── reddit_test.go              # Tests for Reddit API interactions
-│   │   ├── google_nlp_test.go           # Tests for Google Cloud Natural Language API interactions
+│   │   ├── yahoo_finance_test.go
+│   │   ├── reddit_test.go
+│   │   ├── google_nlp_test.go
 │   ├── analysis/
-│   │   ├── sentiment_analyzer_test.go   # Tests for sentiment analysis logic
+│   │   ├── sentiment_analyzer_test.go
 │   ├── cli/
-│   │   ├── cli_test.go                  # Tests for CLI interface and input handling
+│   │   ├── cli_test.go
 │   ├── report/
-│   │   ├── report_generator_test.go      # Tests for report generation and display
+│   │   ├── report_generator_test.go
 │   ├── export/
-│   │   ├── export_test.go               # Tests for data export functionalities
-│
-├── Dockerfile                           # Dockerfile for containerization
-├── go.mod                               # Go module file
-├── go.sum                               # Go module checksums
-└── README.md                            # Project documentation
+│   │   ├── export_test.go
+├── Dockerfile
+├── go.mod
+├── go.sum
+└── README.md
+
 ```

@@ -19,6 +19,5 @@ func (s *BlueskyService) GetPosts(query, token, since, until string) (*model.Blu
 		return nil, err
 	}
 
-	// Additional processing of response data can be done here if needed.
 	return response, nil
 }
