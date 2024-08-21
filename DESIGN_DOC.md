@@ -1,19 +1,19 @@
 # Design Document for Stock Sentiment CLI Tool
     
 ## Summary 
-The Stock Sentiment Analysis app allows users to explore the relationship between stock performance and public sentiment through a simple, intuitive CLI. The app utilizes the Yahoo Finance, Reddit, and Google Cloud Natural Language APIs to combine sentiment anaylsis of tweets related to a specific stock symbol with historical data for that stock. Users can use the CLI to view sentiment analysis results, manage previous reports, and export data in various formats.
+The Stock Sentiment Analysis app allows users to explore the relationship between stock performance and public sentiment through a simple, intuitive CLI. The app utilizes the Yahoo Finance, Bluesky, and Google Cloud Natural Language APIs to combine sentiment anaylsis of tweets related to a specific stock symbol with historical data for that stock. Users can use the CLI to view sentiment analysis results, manage previous reports, and export data in various formats.
 
 ## Architecture 
 ### Overview 
 - **CLI Interface**: Handles user input and displays results.
 - **API Integrations**:
     - **Yahoo Finance API**: Fetch historical stock data.
-    - **Reddit API**: Collect recent tweets about the stock.
+    - **Bluesky API**: Collect recent tweets about the stock.
     - **Google Cloud Natural Language API**: Perform sentiment analysis on tweets.
 - **Data Processing**: Analyze stock data and sentiment to provide insights.
 - **Report Generation**: Generate and display reports combining stock metrics and sentiment analysis.
 ### Design Patterns
-  - **Facade Pattern**: Simplifies interactions with the Yahoo Finance, Reddit, and Google Cloud Natural Language APIs.
+  - **Facade Pattern**: Simplifies interactions with the Yahoo Finance, Bluesky, and Google Cloud Natural Language APIs.
   - **Strategy Pattern**: Allows dynamic application of different sentiment analysis filters or strategies.
   - **Builder Pattern**: Constructs complex reports by combining data from various sources in a modular manner.
   - **Decorator Pattern**: Enhances the functionality of sentiment analysis results, such as adding context or aggregating sentiment data.
@@ -21,11 +21,11 @@ The Stock Sentiment Analysis app allows users to explore the relationship betwee
 1. **Metrics**
     - Integrate Prometheus or another monitoring tool to track metrics like API call duration, data processing time, and request counts.
     - Example metrics:
-        - API Call Duration: Measures how long it takes to fetch data from Yahoo Finance, Reddit, and Google Cloud Natural Language.
+        - API Call Duration: Measures how long it takes to fetch data from Yahoo Finance, Bluesky, and Google Cloud Natural Language.
         - Request Counts: Tracks how many times different commands or strategies are used.
 2. **Testing and Benchmarking**
     - **Unit Tests**: For individual components and functions.
-    - **Integration Tests**: For interactions with Yahoo Finance API, Reddit API, and Google Cloud Natural Language API.
+    - **Integration Tests**: For interactions with Yahoo Finance API, Bluesky API, and Google Cloud Natural Language API.
     - **Benchmarking**: Measure performance using Go’s benchmarking tools.
 3. **Scalability and Performance**
     - Optimize data fetching and processing.
