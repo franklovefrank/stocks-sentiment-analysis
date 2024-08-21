@@ -19,7 +19,7 @@ func NewSentimentService(apiFacade facade.APIFacade) *SentimentService {
 
 // fetches posts and analyzes sentiment.
 func (s *SentimentService) AnalyzePosts(query model.StockQuery) (int, int, int, error) {
-	postsResponse, err := s.apiFacade.FetchPosts()
+	postsResponse, err := s.apiFacade.FetchPosts(query)
 	if err != nil {
 		return 0, 0, 0, err
 	}
