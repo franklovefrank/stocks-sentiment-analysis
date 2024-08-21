@@ -11,16 +11,16 @@ import (
 
 type YahooFinanceClient struct{}
 
-func (c *YahooFinanceClient) FetchData(symbol, startDate, endDate string) (*model.StockHistory, error) {
-	startUnix, err := util.DateToUnix(startDate)
+func (c *YahooFinanceClient) FetchData(query model.StockQuery) (*model.StockHistory, error) {
+	startUnix, err := util.DateToUnix(query.StartDate)
 	if err != nil {
 		return nil, fmt.Errorf("invalid start date: %w", err)
 	}
-	endUnix, err := util.DateToUnix(endDate)
+	endUnix, err := util.DateToUnix(query.EndDate)
 	if err != nil {
 		return nil, fmt.Errorf("invalid end date: %w", err)
 	}
-	url := buildYahooFinanceURL(symbol, startUnix, endUnix)
+	url := buildYahooFinanceURL(query.Symbol, startUnix, endUnix)
 	resp, err := http.Get(url)
 	if err != nil {
 		return nil, fmt.Errorf("error fetching data: %w", err)
@@ -43,9 +43,7 @@ func (c *YahooFinanceClient) FetchData(symbol, startDate, endDate string) (*mode
 	}
 
 	var stockHistory model.StockHistory
-	stockHistory.Symbol = symbol
-	stockHistory.StartDate = startDate
-	stockHistory.EndDate = endDate
+	stockHistory.Query = query
 
 	for i, record := range records {
 		if i == 0 {

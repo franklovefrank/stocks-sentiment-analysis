@@ -1,5 +1,11 @@
 package model
 
+type StockQuery struct {
+	Symbol    string
+	StartDate string
+	EndDate   string
+}
+
 type StockData struct {
 	Date     string  `json:"date"`
 	Open     float64 `json:"open"`
@@ -11,8 +17,6 @@ type StockData struct {
 }
 
 type StockHistory struct {
-	Symbol    string      `json:"symbol"`
-	StartDate string      `json:"start_date"`
-	EndDate   string      `json:"end_date"`
-	Records   []StockData `json:"records"`
+	Query   StockQuery  `json:"query"`
+	Records []StockData `json:"records"`
 }

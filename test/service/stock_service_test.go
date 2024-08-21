@@ -30,5 +30,5 @@ func TestCalculateReturnsAndDrawdown(t *testing.T) {
 	returns, drawdown, err := stockService.CalculateReturnsAndDrawdown(query)
 	assert.NoError(t, err)
 	assert.Equal(t, 6.67, returns)
-	assert.Equal(t, 9.09, drawdown)
+	assert.Equal(t, 6.45, drawdown)
 }

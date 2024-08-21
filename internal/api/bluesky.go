@@ -5,30 +5,33 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"os"
 	"stock-sentiment-cli/internal/model"
 	"stock-sentiment-cli/internal/util"
 )
 
 type BlueskyClient struct{}
 
-func (c *BlueskyClient) FetchPosts(query, token, since, until string) (*model.BlueskyResponse, error) {
+func (c *BlueskyClient) FetchPosts(query model.StockQuery) (*model.BlueskyResponse, error) {
+	token := os.Getenv("BLUESKY_API_TOKEN")
+	if token == "" {
+		return nil, fmt.Errorf("BLUESKY_API_TOKEN environment variable is not set")
+	}
+
 	baseURL := "https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts"
 	params := url.Values{}
-	params.Add("q", query)
-	if since != "" {
-		sinceISO8601, err := util.ToISO8601(since)
-		if err != nil {
-			return nil, err
-		}
-		params.Add("since", sinceISO8601)
+	params.Add("q", query.Symbol)
+	sinceISO8601, err := util.ToISO8601(query.StartDate)
+	if err != nil {
+		return nil, err
 	}
-	if until != "" {
-		untilISO8601, err := util.ToISO8601(until)
-		if err != nil {
-			return nil, err
-		}
-		params.Add("until", untilISO8601)
+	params.Add("since", sinceISO8601)
+	untilISO8601, err := util.ToISO8601(query.EndDate)
+	if err != nil {
+		return nil, err
 	}
+	params.Add("until", untilISO8601)
+
 	fullURL := baseURL + "?" + params.Encode()
 
 	client := &http.Client{}

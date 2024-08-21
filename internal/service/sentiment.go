@@ -6,6 +6,7 @@ import (
 	"sync"
 
 	"stock-sentiment-cli/internal/facade"
+	"stock-sentiment-cli/internal/model"
 )
 
 type SentimentService struct {
@@ -17,8 +18,8 @@ func NewSentimentService(apiFacade facade.APIFacade) *SentimentService {
 }
 
 // fetches posts and analyzes sentiment.
-func (s *SentimentService) AnalyzePosts(symbol, startDate, endDate string) (int, int, int, error) {
-	postsResponse, err := s.apiFacade.FetchPosts(symbol, "your-token", startDate, endDate)
+func (s *SentimentService) AnalyzePosts(query model.StockQuery) (int, int, int, error) {
+	postsResponse, err := s.apiFacade.FetchPosts()
 	if err != nil {
 		return 0, 0, 0, err
 	}

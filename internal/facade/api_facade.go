@@ -5,7 +5,7 @@ import (
 )
 
 type APIFacade interface {
-	FetchStockData(symbol, startDate, endDate string) (*model.StockHistory, error)
-	FetchPosts(query, token, since, until string) (*model.BlueskyResponse, error)
+	FetchStockData(stock_info model.StockQuery) (*model.StockHistory, error)
+	FetchPosts(stock_info model.StockQuery) (*model.BlueskyResponse, error)
 	AnalyzeSentiment(text string) (*model.SentimentResult, error)
 }
