@@ -16,7 +16,7 @@ var analyzeCmd = &cobra.Command{
 
 		stockService, sentimentService := setup.InitializeServices()
 
-		positive, neutral, negative, err := sentimentService.AnalyzePosts(query.Symbol, query.StartDate, query.EndDate)
+		positive, neutral, negative, err := sentimentService.AnalyzePosts(query)
 		if err != nil {
 			fmt.Printf("Error fetching or analyzing posts: %v\n", err)
 			return

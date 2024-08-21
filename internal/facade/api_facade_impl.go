@@ -19,12 +19,12 @@ func NewAPIFacade(yahooClient *api.YahooFinanceClient, blueskyClient *api.Bluesk
 	}
 }
 
-func (f *APIFacadeImpl) FetchStockData(symbol, startDate, endDate string) (*model.StockHistory, error) {
-	return f.yahooClient.FetchData(symbol, startDate, endDate)
+func (f *APIFacadeImpl) FetchStockData(query model.StockQuery) (*model.StockHistory, error) {
+	return f.yahooClient.FetchData(query)
 }
 
-func (f *APIFacadeImpl) FetchPosts(query, token, since, until string) (*model.BlueskyResponse, error) {
-	return f.blueskyClient.FetchPosts(query, token, since, until)
+func (f *APIFacadeImpl) FetchPosts(query model.StockQuery) (*model.BlueskyResponse, error) {
+	return f.blueskyClient.FetchPosts(query)
 }
 
 func (f *APIFacadeImpl) AnalyzeSentiment(text string) (*model.SentimentResult, error) {
