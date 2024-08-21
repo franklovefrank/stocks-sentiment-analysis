@@ -1,4 +1,5 @@
 # Stock Sentiment Analysis CLI
+<img width="527" alt="Screenshot 2024-08-21 at 17 53 03" src="https://github.com/user-attachments/assets/48cc0366-5f42-46a1-89d1-6cfaedf70c1b">
 
 ## Summary
 
