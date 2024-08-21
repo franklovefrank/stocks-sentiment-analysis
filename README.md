@@ -90,8 +90,3 @@ The Stock Sentiment Analysis app allows users to explore the relationship betwee
      ```bash
      ./stock-sentiment-cli export
      ```
-
-## Summary
-
-The Stock Sentiment Analysis CLI offers a powerful tool for analyzing the intersection of stock performance and public sentiment. By leveraging the Yahoo Finance, Bluesky, and Google Cloud Natural Language APIs, users can gain insights into stock trends and public opinions. The CLI interface allows for easy access to sentiment analysis, report management, and data export features.
----
