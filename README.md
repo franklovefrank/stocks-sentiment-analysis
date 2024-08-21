@@ -1,0 +1,5 @@
+- more sophisticated analysis
+- formatting of reports/cli output 
+- imports ?
+- get company name from stock symbol
+- bubble up errors

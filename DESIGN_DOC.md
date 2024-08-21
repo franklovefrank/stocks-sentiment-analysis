@@ -1,19 +1,19 @@
 # Design Document for Stock Sentiment CLI Tool
     
 ## Summary 
-The Stock Sentiment Analysis app allows users to explore the relationship between stock performance and public sentiment through a simple, intuitive CLI. The app utilizes the Yahoo Finance, Twitter, and Google Cloud Natural Language APIs to combine sentiment anaylsis of tweets related to a specific stock symbol with historical data for that stock. Users can use the CLI to view sentiment analysis results, manage previous reports, and export data in various formats.
+The Stock Sentiment Analysis app allows users to explore the relationship between stock performance and public sentiment through a simple, intuitive CLI. The app utilizes the Yahoo Finance, Reddit, and Google Cloud Natural Language APIs to combine sentiment anaylsis of tweets related to a specific stock symbol with historical data for that stock. Users can use the CLI to view sentiment analysis results, manage previous reports, and export data in various formats.
 
 ## Architecture 
 ### Overview 
 - **CLI Interface**: Handles user input and displays results.
 - **API Integrations**:
     - **Yahoo Finance API**: Fetch historical stock data.
-    - **Twitter API**: Collect recent tweets about the stock.
+    - **Reddit API**: Collect recent tweets about the stock.
     - **Google Cloud Natural Language API**: Perform sentiment analysis on tweets.
 - **Data Processing**: Analyze stock data and sentiment to provide insights.
 - **Report Generation**: Generate and display reports combining stock metrics and sentiment analysis.
 ### Design Patterns
-  - **Facade Pattern**: Simplifies interactions with the Yahoo Finance, Twitter, and Google Cloud Natural Language APIs.
+  - **Facade Pattern**: Simplifies interactions with the Yahoo Finance, Reddit, and Google Cloud Natural Language APIs.
   - **Strategy Pattern**: Allows dynamic application of different sentiment analysis filters or strategies.
   - **Builder Pattern**: Constructs complex reports by combining data from various sources in a modular manner.
   - **Decorator Pattern**: Enhances the functionality of sentiment analysis results, such as adding context or aggregating sentiment data.
@@ -21,11 +21,11 @@ The Stock Sentiment Analysis app allows users to explore the relationship betwee
 1. **Metrics**
     - Integrate Prometheus or another monitoring tool to track metrics like API call duration, data processing time, and request counts.
     - Example metrics:
-        - API Call Duration: Measures how long it takes to fetch data from Yahoo Finance, Twitter, and Google Cloud Natural Language.
+        - API Call Duration: Measures how long it takes to fetch data from Yahoo Finance, Reddit, and Google Cloud Natural Language.
         - Request Counts: Tracks how many times different commands or strategies are used.
 2. **Testing and Benchmarking**
     - **Unit Tests**: For individual components and functions.
-    - **Integration Tests**: For interactions with Yahoo Finance API, Twitter API, and Google Cloud Natural Language API.
+    - **Integration Tests**: For interactions with Yahoo Finance API, Reddit API, and Google Cloud Natural Language API.
     - **Benchmarking**: Measure performance using Go’s benchmarking tools.
 3. **Scalability and Performance**
     - Optimize data fetching and processing.
@@ -185,7 +185,7 @@ stock-sentiment-cli/
 ├── pkg/
 │   ├── api/
 │   │   ├── yahoo_finance.go             # Interaction with Yahoo Finance API
-│   │   ├── twitter.go                   # Interaction with Twitter API
+│   │   ├── bluesky.go                   # Interaction with Bluesky API
 │   │   ├── google_nlp.go                # Interaction with Google Cloud Natural Language API
 │   ├── analysis/
 │   │   ├── sentiment_analyzer.go        # Sentiment analysis logic using Google Cloud NLP
@@ -203,7 +203,7 @@ stock-sentiment-cli/
 ├── test/
 │   ├── api/
 │   │   ├── yahoo_finance_test.go        # Tests for Yahoo Finance API interactions
-│   │   ├── twitter_test.go              # Tests for Twitter API interactions
+│   │   ├── reddit_test.go              # Tests for Reddit API interactions
 │   │   ├── google_nlp_test.go           # Tests for Google Cloud Natural Language API interactions
 │   ├── analysis/
 │   │   ├── sentiment_analyzer_test.go   # Tests for sentiment analysis logic
